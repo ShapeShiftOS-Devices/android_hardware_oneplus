@@ -1,0 +1,17 @@
+android_app {
+    name: "CameraHandler",
+
+    srcs: ["src/**/*.java"],
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+
+    static_libs: [
+        "vendor.oneplus.hardware.camera-V1.0-java",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
