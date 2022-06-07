@@ -6,6 +6,9 @@ android_app {
     certificate: "platform",
     platform_apis: true,
     system_ext_specific: true,
+    dex_preopt: {
+	enabled: false,
+    },
 
     static_libs: [
         "vendor.oneplus.hardware.camera-V1.0-java",
