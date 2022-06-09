@@ -116,9 +116,23 @@ class KeyHandler : Service() {
                     audioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0)
                 }
             }
-            ZEN_PRIORITY_ONLY, ZEN_TOTAL_SILENCE, ZEN_ALARMS_ONLY -> {
+            ZEN_PRIORITY_ONLY -> {
                 audioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL)
-                notificationManager.setZenMode(mode - ZEN_OFFSET, null, TAG)
+                notificationManager.setZenMode(Settings.Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS, null, TAG)
+                if (muteMedia && wasMuted) {
+                    audioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0)
+                }
+            }
+            ZEN_TOTAL_SILENCE -> {
+                audioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL)
+                notificationManager.setZenMode(Settings.Global.ZEN_MODE_NO_INTERRUPTIONS, null, TAG)
+                if (muteMedia && wasMuted) {
+                    audioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0)
+                }
+            }
+            ZEN_ALARMS_ONLY -> {
+                audioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL)
+                notificationManager.setZenMode(Settings.Global.ZEN_MODE_ALARMS, null, TAG)
                 if (muteMedia && wasMuted) {
                     audioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0)
                 }
